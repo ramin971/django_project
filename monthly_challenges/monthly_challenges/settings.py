@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'monthly_challenges.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'challengedb',
+        'USER': 'nimar',
+        'PASSWORD': 'Academi',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
