@@ -30,3 +30,12 @@ def monthly_challenge_by_number(request,month):
     redirect_path = reverse('monthly_challenge_string',args=[redirect_month])
 
     return HttpResponseRedirect(redirect_path)
+def home(request):
+    months=list(switcher.keys())
+    months_list =[]
+
+    for month in months:
+        redirect_link = reverse('monthly_challenge_string', args=[month])
+        month_list=f'<ul><li><a href="{redirect_link}">{month}</a></li></ul>'
+        months_list.append(month_list)
+    return HttpResponse(months_list)
