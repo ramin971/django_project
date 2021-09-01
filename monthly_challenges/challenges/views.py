@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import HttpResponse,HttpResponseNotFound,HttpResponseRedirect
+from django.http import Http404,HttpResponseNotFound,HttpResponseRedirect
 # Create your views here.
 switcher = {
     'january': 'it is work in january :)',
@@ -17,11 +17,15 @@ switcher = {
     'december': None,
 }
 def monthly_challenge(request,month):
-    challenge_text=switcher.get(month, 'error  :(')
-    return render(request,'challenges/challenge.html',{
+    try:
+        # challenge_text=switcher.get(month,"error")
+        challenge_text=switcher[month]
+        return render(request,'challenges/challenge.html',{
         'text':challenge_text,
         'month_name':month
-    })
+        })
+    except:
+        raise Http404
 
 def monthly_challenge_by_number(request,month):
     months = list(switcher.keys())
