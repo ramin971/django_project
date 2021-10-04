@@ -42,7 +42,7 @@ def home(request):
 
     return render(request,'challenges/home.html',{
         'months':months
-    }
+    })
 def book_list(request):
     books=Book.objects.all().order_by('-rating')
     total=books.count()
