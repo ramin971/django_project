@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.urls import reverse
 from django.http import Http404,HttpResponseNotFound,HttpResponseRedirect
+from .models import Book
+from django.db.models import Avg
 # Create your views here.
 switcher = {
     'january': 'it is work in january :)',
@@ -40,4 +42,21 @@ def home(request):
 
     return render(request,'challenges/home.html',{
         'months':months
+    })
+def book_list(request):
+    books=Book.objects.all().order_by('-rating')
+    total=books.count()
+    average=books.aggregate(Avg('rating'))
+    return render(request,'challenges/books.html',{
+        'books': books,
+        'total_number_of_books':total,
+        'average':average
+    })
+
+
+def detail_book(request,slug):
+    # book=Book.objects.get(pk=id)
+    book=get_object_or_404(Book,slug=slug)
+    return render(request,'challenges/book_detail.html',{
+        'book':book
     })

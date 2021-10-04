@@ -75,6 +75,7 @@ def posts(request):
     })
 
 def post_detail(request,slug):
+    # p=list(filter(lambda x:x['slug']==slug ,all_posts))    ########### return a list such as[{name:'ali'}] for use from this in template should be unpack in template whit for loop such as all_poist
     for key in all_posts:
         if key['slug']==slug:
             post_d=key
