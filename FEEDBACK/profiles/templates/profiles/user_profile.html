@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>list of all profiles</title>
+</head>
+<body>
+<ul>
+{% for profile in profiles %}
+<li>
+    <img src="{{ profile.image.url }}" alt="not find">
+</li>
+{% endfor %}
+</ul>
+</body>
+</html>

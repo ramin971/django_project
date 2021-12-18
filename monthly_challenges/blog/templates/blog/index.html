@@ -17,7 +17,12 @@ My Blog
     <img src="{% static 'blog/images/nationalcard.jpg' %}" alt="Ramin - The Author Of This Blog" />
     <h2>RAMIN'S BLOG</h2>
   </header>
-  <p>Hi, I am Ramin and I love to blog about tech and the world!</p>
+    {% if request.user.is_authenticated %}
+          <p>Hi {{ request.user.username }} , I am Ramin and I love to blog about tech and the world!</p>
+    {% else %}
+          <p>Hi, I am Ramin and I love to blog about tech and the world!</p>
+
+    {% endif %}
 </section>
 
 <section id="latest-posts">
@@ -28,6 +33,23 @@ My Blog
         {% include 'blog/includes/post.html' %}
       {% endfor %}
   </ul>
+{% if status %}
+
+    <h2>Favorite</h2>
+    <ul>
+    <article class="post">
+    <div class="post__content">
+        {% for obj in read_later %}
+
+                <a href="{% url 'post-detail-page' obj.slug %}">{{ obj }}</a>
+        {% endfor %}
+    </div>
+
+    </article>
+
+
+    </ul>
+{% endif %}
 </section>
 
 <section id="about">

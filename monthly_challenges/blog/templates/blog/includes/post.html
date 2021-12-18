@@ -1,16 +1,21 @@
-{% load static %}
-
 
  <li>
       <article class="post">
         <a href="{% url 'post-detail-page' post.slug %}">
-          <img src="{% static 'blog/images/'|add:post.image %}" alt="{{ post.title }}" />
+          <img src="{{ post.image.url }}" alt="{{ post.title }}" />
           <div class="post__content">
             <h3>{{ post.title }}</h3>
+              <p>
+              {% for tags in post.tag.all %}
+                {{ tags }}
+              {% endfor %}
+
+              </p>
             <p>
-              {{ post.excerpt }}
+              {{ post.excerpt|truncatewords:15 }}
             </p>
           </div>
         </a>
       </article>
+
  </li>

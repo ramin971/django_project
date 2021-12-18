@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'accounts/login.css' %}">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="card">
+ <h2>Log-In Account</h2>
+
+
+<form action="{% url 'log_in' %}" method="POST">
+    {% csrf_token %}
+ <div class="input-border">
+   {% for field in form %}
+      <p>{{ field.label }}</p>
+       {{ field }}
+       {{ field.errors }}
+   {% endfor %}
+     <input type="hidden" name="next" value="{{ request.GET.next }}">
+  <div class="border"></div>
+ </div>
+
+ <input href="#" type="submit" class="btn" value="Log In">
+</form>
+<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+</div>
+
+</body>
+</html>

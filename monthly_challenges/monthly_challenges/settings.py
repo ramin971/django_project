@@ -25,13 +25,14 @@ SECRET_KEY = 'django-insecure-xvs_)5^=(0ez$*he2kky_6s)=9=gg#p-btmku90+95-u)%*l(&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'blog',
+    'accounts',
     'challenges',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'monthly_challenges.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'challengedb',
+        'NAME': 'blogdb',
         'USER': 'nimar',
         'PASSWORD': 'Academi',
         'HOST': '127.0.0.1',
@@ -129,8 +130,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     BASE_DIR / 'static'
 ]
-
+# LOGIN_REDIRECT_URL = 'starting-page'
+# LOGIN_URL = 'login'
+# LOGOUT_URL = 'logout'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = BASE_DIR / 'uploads'
+MEDIA_URL = '/files/'

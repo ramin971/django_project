@@ -1,0 +1,20 @@
+{% extends 'reviews/base.html' %}
+{% block title %}
+comment form
+{% endblock %}
+{% block content %}
+<form  method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        {{ field.label_tag }}<br>
+        {{ field }}<br>
+        {{ field.errors }}<br>
+    {% endfor %}
+
+{#    {{ form.user_name.label_tag }}#}
+{#    {{ form.user_name }}#}
+{#    {{ form.user_name.errors }}#}
+    <button>send</button>
+</form>
+
+{% endblock %}

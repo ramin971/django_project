@@ -1,0 +1,15 @@
+{% extends "reviews/base.html" %}
+
+{% block title %}
+edit{{ form.user_name }}
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form }}
+    <button>send</button>
+</form>
+
+{% endblock %}
